@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luxalon — Ceiling dari Biru Indonesia." />
+  <link rel="icon" type="image/png" href="../assets/logo-biru-v.png" />
+  <title>Luxalon Ceiling | Biru Indonesia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/brand.css" />
+</head>
+
+<body>
+
+  <!-- ==============================
+       NAVBAR (dengan Mega Menu Produk)
+  ============================== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="../index.html" class="navbar__logo">
+        <img src="../assets/logo-biru.png" alt="Biru Indonesia" />
+      </a>
+
+      <nav class="navbar__nav">
+        <ul class="navbar__links">
+
+          <li class="has-mega" id="produkMenu">
+            <a href="#" class="navbar__produk-trigger" aria-haspopup="true" aria-expanded="false">
+              Produk <span class="navbar__caret" aria-hidden="true">&#9662;</span>
+            </a>
+
+            <div class="mega" id="megaProduk">
+              <div class="mega__inner">
+                <ul class="mega__cats" role="tablist">
+                  <li class="mega__cat is-active" data-cat="ceiling">
+                    <a href="ceiling-luxalon.html">Ceiling</a>
+                  </li>
+                  <li class="mega__cat" data-cat="doorhardware">
+                    <a href="door-hardware-yale.html">Hard DoorLock</a>
+                  </li>
+                  <li class="mega__cat" data-cat="flooring">
+                    <a href="flooring-pergo.html">Flooring</a>
+                  </li>
+                  <li class="mega__cat" data-cat="rollingdoor">
+                    <a href="rolling-door-brsfireshutter.html">Rolling Door</a>
+                  </li>
+                </ul>
+                <div class="mega__panels">
+                  <div class="mega__panel is-active" data-cat="ceiling">
+                    <a class="mega__brand" href="ceiling-luxalon.html">
+                      <span class="mega__brand-name">Luxalon</span>
+                      <span class="mega__brand-desc">Metal ceiling system</span>
+                    </a>
+                    <a class="mega__brand" href="ceiling-daiken.html">
+                      <span class="mega__brand-name">Daiken</span>
+                      <span class="mega__brand-desc">Acoustic ceiling</span>
+                    </a>
+                    <a class="mega__brand" href="ceiling-usg.html">
+                      <span class="mega__brand-name">USG</span>
+                      <span class="mega__brand-desc">Gypsum ceiling</span>
+                    </a>
+                  </div>
+                  <div class="mega__panel" data-cat="doorhardware">
+                    <a class="mega__brand" href="door-hardware-yale.html">
+                      <span class="mega__brand-name">Yale</span>
+                      <span class="mega__brand-desc">Smart &amp; digital lock</span>
+                    </a>
+                    <a class="mega__brand" href="door-hardware-assabloy.html">
+                      <span class="mega__brand-name">Assa Abloy</span>
+                      <span class="mega__brand-desc">Commercial locking</span>
+                    </a>
+                    <a class="mega__brand" href="door-hardware-brslock.html">
+                      <span class="mega__brand-name">BRS Lock</span>
+                      <span class="mega__brand-desc">Heavy-duty hardware</span>
+                    </a>
+                  </div>
+                  <div class="mega__panel" data-cat="flooring">
+                    <a class="mega__brand" href="flooring-pergo.html">
+                      <span class="mega__brand-name">Pergo</span>
+                      <span class="mega__brand-desc">Laminate flooring</span>
+                    </a>
+                    <a class="mega__brand" href="flooring-armstrong.html">
+                      <span class="mega__brand-name">Armstrong</span>
+                      <span class="mega__brand-desc">Vinyl &amp; resilient</span>
+                    </a>
+                    <a class="mega__brand" href="flooring-aereo.html">
+                      <span class="mega__brand-name">Aereo</span>
+                      <span class="mega__brand-desc">SPC flooring</span>
+                    </a>
+                  </div>
+                  <div class="mega__panel" data-cat="rollingdoor">
+                    <a class="mega__brand" href="rolling-door-brsfireshutter.html">
+                      <span class="mega__brand-name">BRS Fireshutter</span>
+                      <span class="mega__brand-desc">Fire-rated rolling door</span>
+                    </a>
+                    <a class="mega__brand" href="rolling-door-faac.html">
+                      <span class="mega__brand-name">FAAC</span>
+                      <span class="mega__brand-desc">Automatic gate system</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="../tentang-kami.html">Tentang Kami</a></li>
+          <li><a href="../galeri.html">Galeri</a></li>
+          <li><a href="../inspirasi.html">Inspirasi</a></li>
+          <li><a href="../karir.html">Karir</a></li>
+          <li><a href="../kontak.html">Kontak Kami</a></li>
+        </ul>
+      </nav>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="navbar__mobile" id="mobileMenu">
+      <ul>
+        <li class="navbar__mobile-acc">
+          <button class="navbar__mobile-trigger" aria-expanded="false">Produk <span>&#9662;</span></button>
+          <ul class="navbar__mobile-sub">
+            <li><a href="ceiling-luxalon.html">Ceiling</a></li>
+            <li><a href="door-hardware-yale.html">Hard DoorLock</a></li>
+            <li><a href="flooring-pergo.html">Flooring</a></li>
+            <li><a href="rolling-door-brsfireshutter.html">Rolling Door</a></li>
+          </ul>
+        </li>
+        <li><a href="../tentang-kami.html">Tentang Kami</a></li>
+        <li><a href="../galeri.html">Galeri</a></li>
+        <li><a href="../inspirasi.html">Inspirasi</a></li>
+        <li><a href="../karir.html">Karir</a></li>
+        <li><a href="../kontak.html">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="cat-hero">
+    <div class="container">
+      <nav class="cat-hero__breadcrumb">
+        <a href="../index.html">Home</a><span>/</span>
+        Ceiling<span>/</span>
+        Luxalon
+      </nav>
+      <h1>Luxalon</h1>
+      <p>Ceiling berkualitas dari Biru Indonesia.</p>
+    </div>
+  </section>
+
+  <section class="brand-body">
+    <div class="container">
+      <div class="brand-stub">
+        <h2>Halaman Luxalon sedang disiapkan</h2>
+        <p>Konten lengkap untuk produk ini akan segera hadir. Gunakan struktur halaman <strong>Pergo</strong> sebagai acuan saat mengisi halaman ini.</p>
+        <a href="https://wa.me/6281510263893" target="_blank" class="btn btn--whatsapp">
+          <img src="../assets/icon-wa.png" alt="" aria-hidden="true" />
+          Tanya via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid footer__grid--home">
+
+        <div class="footer__col">
+          <h4>Kantor Pusat</h4>
+          <address>
+            Jl. Pintu Besar Selatan No.93, RT.001/RW.006,<br />
+            Pinangsia, Kec. Taman Sari, Kota<br />
+            Jakarta Barat, Daerah Khusus<br />
+            Ibukota Jakarta 11110
+          </address>
+          <h4 style="margin-top:16px">Surabaya</h4>
+          <address>
+            Jl. Pintu Besar Selatan No.93, RT.001/RW.006,<br />
+            Pinangsia, Kec. Taman Sari, Kota<br />
+            Jakarta Barat, Daerah Khusus<br />
+            Ibukota Jakarta 11110
+          </address>
+          <h4 style="margin-top:16px">Medan</h4>
+          <address>
+            Jl. Pintu Besar Selatan No.93, RT.001/RW.006,<br />
+            Pinangsia, Kec. Taman Sari, Kota<br />
+            Jakarta Barat, Daerah Khusus<br />
+            Ibukota Jakarta 11110
+          </address>
+        </div>
+
+        <div class="footer__col">
+          <h4>Tentang Kami</h4>
+          <ul>
+            <li><a href="#">Company Profile</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Digital Content</h4>
+          <ul>
+            <li><a href="#">Insight dan inspirasi</a></li>
+          </ul>
+          <h4 style="margin-top:20px">Katalog</h4>
+          <ul>
+            <li><a href="#">E-Katalog</a></li>
+            <li><a href="#">Request Katalog Fisik</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="mailto:contactus@biruindonesia.com">Email kami</a></li>
+            <li><a href="https://wa.me/6281510263893">0812 1234 4506 78</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>2026 &mdash; PT. Biru &amp; Sons</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <a href="https://wa.me/6281510263893" target="_blank" class="wa-float" aria-label="Chat WhatsApp">
+    <img src="../assets/icon-wa.png" alt="WhatsApp" />
+  </a>
+
+  <script src="js/script.js"></script>
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

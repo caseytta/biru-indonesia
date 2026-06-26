@@ -1,0 +1,137 @@
+//ASSET WARNA//
+COLOR
+
+  --navy:          #0b2d6c;
+  --navy-mid:      #162560;
+
+
+  --gold:           #cd9e32
+  --gold-light:     #fce26d
+  --gold-dark:      #8d681c
+
+  --blue-accent:   #2563EB;
+
+  --white:         #FFFFFF;
+  --off-white:     #F8F9FB;
+
+  --gray-100:      #F1F5F9;
+  --gray-700:      #475569;
+
+  --text-dark:     #0F172A;
+  --text-body:     #334155;
+  --bluetext:    #60a5fa;
+
+  --wa-green:      #25D366;
+  --wa-hover:      #1ebe5a;
+
+    //color logo
+        primary
+        #0b2d6c
+        #cd9e32
+        Secondary
+        #fce26d
+        #8d681c
+    //color text
+        --darktext #0F172A
+        --bodytext #334155
+        --bluetext #60a5fa (dipake di ctaform)
+    //color navy
+        -navyprimary #0b2d6c(main color_logo-title & bg & )
+        --navymid #162560 (cta gradient)
+    //color blue
+        --blueaccent #2563EB (second main color_link-hovermaincolor-navbar)
+    //color white
+        --white #fff (navbar_direction)
+        --offwhite #f8f9fb (pembeda bg section)
+    //color gray-blue
+        --gray100 #F1F5F9 (border nav-kelebihan-projek galeri)
+        --gray700 #475569 (text body pembeda)
+    //color green WARNA
+        --wagreen #25D366
+        --wahover #1ebe5a
+        btn-box-shadow:0 4px 16px rgba(37,211,102,.35)
+        btn-hover-box-shadow:0 8px 24px rgba(37,211,102,.45);
+        hero-gradient-ackground:linear-gradient(to bottom, rgba(13,30,76,.3) 0%, rgba(13,30,76,.55) 100%);
+        hero-tagline-shadow- letter-spacing:.01em; text-shadow:0 1px 4px rgba(0,0,0,.3);
+
+#60a5fa
+//ASSET FOTO//
+asset/0-index
+    //Hero
+        asset/0-index//hero.jpg
+        asset/0-index/herobanner-bh.jpg
+
+    //jelajahisolusikami
+        asset/0-index/kesehatan.jpg
+        asset/0-index/pendidikan.jpg
+        asset/0-index/perkantoran.jpg
+        asset/0-index/perumahan.jpg
+        asset/0-index/pabrik.jpg
+
+    //sejarah singkat
+        asset/0-index/
+        asset/0-index/
+
+    //solusikami
+        asset/0-index/
+        asset/0-index/
+
+    //galeriprojek
+        asset/0-index/
+        asset/0-index/
+
+    //inspirasi
+        asset/0-index/
+        asset/0-index/
+
+    //footer
+        asset/0-index/
+        asset/0-index/
+
+
+asset/2-tentangkami
+    asset/2-tentangkami
+
+asset/3-galeri
+    asset/3-galeri
+
+asset/4-inspirasi
+    asset/4-inspirasi
+
+asset/5-karir
+    asset/4-inspirasi
+
+asset/6-kontak
+    asset/6-kontak
+
+//ASSET PRODUK//
+asset/ceiling
+    asset/ceiling
+    asset/ceiling
+    asset/ceiling
+    asset/ceiling
+asset/doorhardware
+    asset/doorhardware
+    asset/doorhardware
+    asset/doorhardware
+    asset/doorhardware
+asset/flooring
+    asset/flooring
+    asset/flooring
+    asset/flooring
+    asset/flooring
+asset/rollingdoor
+    asset/rollingdoor
+    asset/rollingdoor
+    asset/rollingdoor
+    asset/rollingdoor
+
+
+//ASSET FOTO//
+0-index
+1-produk
+2-tentangkami
+3-galeri
+4-inspirasi
+5-karir
+6-kontak

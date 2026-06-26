@@ -1,0 +1,295 @@
+/* ============================================================
+   BIRU INDONESIA — gallery-data.js
+   SUMBER DATA galeri proyek + definisi filter.
+
+   Cara update data proyek:
+   - Jangan ketik manual. Export tab proyek (Google Sheets) ke CSV,
+     lalu jalankan konverter (csv-to-gallery.html) untuk menghasilkan
+     ulang array PROJECTS di bawah. Tempel hasilnya menggantikan
+     array PROJECTS.
+
+   Kolom tiap proyek:
+     nama      : NamaProjek
+     tahun     : Tahun
+     aplikasi  : SolusiAplikasi   (mis. "Residential")
+     segment   : ProductSegment   (mis. "Flooring")
+     brand     : ProductSegment_Brand (mis. "Pergo")
+     material  : JenisMaterial    (opsional)
+     img       : nama file di asset/3-galeri/  (mis. "arumaya.jpg")
+============================================================ */
+/*Archieved===========================================
+   ---- Daftar nilai filter (urutan tampil di sidebar) ---- 
+  const FILTERS = {
+    aplikasi: ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartement dan Hotel", "Fasilitas Umum"],
+    segment:  ["Ceiling", "Hardware", "Flooring", "Rolling Door", "Security Systems"],
+    brand: [
+      "Daiken", "Phonic", "USG", "BRS_Tee", "BRS_Manhole", "Luxalon", "Jayaboard",
+      "Yale", "Assabloy", "BRS_Lock", "Lexcia", "Allsave",
+      "Armstrong", "Pergo", "Aereo", "Kaiden", "BRS_Handrail", "BRS_Skirting",
+      "BRS_Fire Curtain", "BRS_Shutters Rolling Door", "Magnetic", "FAAC"
+    ]
+  };
+
+   ---- Map segment -> nama folder di 1-produk/ ---- 
+  const SEGMENT_FOLDER = {
+    "Ceiling": "ceiling",
+    "Hardware": "hardware",
+    "Flooring": "flooring",
+    "Rolling Door": "rollingdoor",
+    "Security Systems": "security"
+  };
+
+   ---- Brand yang SUDAH punya halaman sendiri ----
+    Hanya brand di sini yang kartunya nge-link ke halaman brand.
+    Brand lain (belum ada halaman) di-link ke "#" (tidak pindah). ---------
+  const BRAND_PAGE = {
+    "Luxalon": "luxalon", "Daiken": "daiken", "USG": "usg",
+    "Yale": "yale", "Assabloy": "assabloy", "BRS_Lock": "brslock",
+    "Pergo": "pergo", "Armstrong": "armstrong", "Aereo": "aereo",
+    "BRS_Shutters Rolling Door": "brsfireshutter", "FAAC": "faac"
+  };
+
+   Hasilkan URL halaman brand dari sebuah proyek.
+    Halaman galeri ada di ROOT, jadi prefix-nya "1-produk/...". 
+  function brandUrl(project) {
+    const folder = SEGMENT_FOLDER[project.segment];
+    const slug = BRAND_PAGE[project.brand];
+    if (folder && slug) return `1-produk/${folder}/${slug}.html`;
+    return "#"; // brand belum punya halaman
+  }
+============================================/
+
+/* ---- DATA PROYEK ----
+   Contoh awal dari Tabel 2 (ganti seluruh array ini dengan hasil
+   konverter CSV saat data 100+ proyek sudah siap). */
+ 
+/* ---- Aplikasi (urut tampil di sidebar) ---- */
+const APLIKASI = ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartemen dan Hotel", "Fasilitas Umum"];
+ 
+/* ---- Segment (urut tampil) ---- */
+const SEGMENTS = ["Ceiling", "Hardware", "Flooring", "Rolling Door", "Security System"];
+ 
+/* ---- Brand per segment (dari master spreadsheet) ----
+   Inilah sumber cascading: centang segment -> tampil brand di sini. */
+const BRAND_BY_SEGMENT = {
+  "Ceiling":         ["Daiken", "Phonic", "USG", "BRS Tee", "BRS_Manhole", "Luxalon", "Jayaboard"],
+  "Hardware":        ["Yale", "Assabloy", "BRS Locks", "Lexcia", "Allsafe"],
+  "Flooring":        ["Armstrong", "Pergo", "Aereo", "Kaiden", "BRS Handrail", "BRS Skirting"],
+  "Rolling Door":    ["BRS Fire Curtain"],
+  "Security System": ["BRS Shutters Rolling Door", "Magnetic", "FAAC"]
+};
+ 
+/* FILTERS dipakai sidebar. brand diisi otomatis dari BRAND_BY_SEGMENT. */
+const FILTERS = {
+  aplikasi: APLIKASI,
+  segment:  SEGMENTS,
+  // daftar datar semua brand (kalau sewaktu-waktu perlu) — diturunkan dari map
+  brand: Object.values(BRAND_BY_SEGMENT).flat()
+};
+ 
+/* ---- segment -> folder di 1-produk/ ---- */
+const SEGMENT_FOLDER = {
+  "Ceiling": "ceiling", "Hardware": "doorhardware", "Flooring": "flooring",
+  "Rolling Door": "rollingdoor", "Security System": "securitysystem"
+};
+ 
+/* ---- brand -> slug halaman (hanya yang sudah punya halaman) ---- */
+const BRAND_PAGE = {
+  "Luxalon": "luxalon", "Daiken": "daiken", "USG": "usg",
+  "Yale": "yale", "Assabloy": "assabloy", "BRS Locks": "brslock",
+  "Pergo": "pergo", "Armstrong": "armstrong", "Aereo": "aereo",
+  "BRS Shutters Rolling Door": "brsfireshutter", "FAAC": "faac"
+};
+ 
+/* URL halaman brand (single brand). null kalau belum ada. */
+function brandUrlFor(segment, brand) {
+  const folder = SEGMENT_FOLDER[segment];
+  const slug = BRAND_PAGE[brand];
+  return (folder && slug) ? `1-produk/${folder}/${slug}.html` : null;
+}
+
+  const PROJECTS = [
+  { nama: "Arumaya Residence", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/arumaya-view.jpg" },
+  { nama: "Mercure Bali Legian", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/mercure-bali-legian.jpg" },
+  { nama: "Delima House", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/delima-house.jpg" },
+  { nama: "Navapark Residence", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/navapark.jpg" },
+  { nama: "IDD PIK 2", tahun: "", aplikasi: "Perkantoran", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/iddpik2.jpg" },
+  { nama: "The Pakubuwono Residence", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/the-pakubuwono.jpg" },
+  { nama: "Rainbow Springs Condovillas", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Pergo, Kaiden", material: "Laminated, WPC", img: "asset/3-galeri/flooring/pergo/rainbow-springs-condovillas.jpg" },
+  { nama: "GPI PETRA", tahun: "", aplikasi: "Fasilitas Umum", segment: "Flooring", brand: "Pergo", material: "Laminated", img: "asset/3-galeri/flooring/pergo/" },
+  { nama: "Kota Kasablanka Apartement", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/kota-kasablanka-apartement.jpg" },
+  { nama: "Apartement Gandaria City (2 Tower)", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-gandariacity-2tower.jpg" },
+  { nama: "Kemang Village Tower Cosmopolitan", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/kemang-village-tower-cosmopolitan.jpg" },
+  { nama: "Water Place Apartment Surabaya", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/water-place-apartment.jpg" },
+  { nama: "Apartement Adiwangsa, Surabaya", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-adiwangsa.jpg" },
+  { nama: "Apartement Pallazo", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-pallazo.jpg" },
+  { nama: "Pakubuwono Residence", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/thepakubuwono.jpg" },
+  { nama: "Apartement Rasuna Said", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-rasunasaid.jpg" },
+  { nama: "Apartement Royale Spring Hills", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-royalespringhills.jpg" },
+  { nama: "Apartement Saint Moritz Penthouse", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-saintmoritzpenthouse.jpg" },
+  { nama: "Apartement Saint Moritz New Presidential", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-saintmoritzpenthouse.jpg" },
+  { nama: "Apartement Saint Moritz New Ambassador", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-saintmoritzpenthouse.jpg" },
+  { nama: "Apartement Satu8 Residence", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/apartement-satu8residence.jpg" },
+  { nama: "Apartement Puri Orchard", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Sudirman Hill", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Skandinavia Apartement", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "SpringHill Residence", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Asthana - Apartement", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Paragon Solo", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel All Season, Bali", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel IBIS, Bali", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Condotel Sun Heritage", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Mercure, Simatupang", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Mercure, Jogja", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Meritus, Surabaya", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Novotel Semarang", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Gorontalo", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Harris Sentul", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel IBIS Hayam Wuruk", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Harper Jogja", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "River Valley", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Onyx, PIK", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Teras Tjilandak", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Golf Island", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "Laminated", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "The Mansion", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Branz Simatupang", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Branz BSD", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "YUKATA APARTEMENT", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "SUDIRMAN ONE", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "SUDIRMAN HILL", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Bidex", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Oyo Room Atlantic", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Oyo Room Alphine", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Teraskita Hotel Bandung", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hotel Ibis", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Riviera Residance", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD Cut Nyak Dien, Meulaboh Aceh", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD Balangan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Laboratory Charoen Pekphand", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Cengkareng Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Jaury Makasar Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Dharmo Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Bengkalis Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Hgudi Waluyo Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Husada", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RH 21 Kemanggisan Clinic", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "OZON Stanford Hanglekir Clinic", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Family Hospital Pluit", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "PKU Muhammadiyah Solo Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "PMI Kramat Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Harum Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Boromeus Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Muara Enim Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Lampung Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Cibabat Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Brimob Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Pekan Baru Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "AINI Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Permata Ibu Hospital Depok", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Sawangan Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Samarinda Public Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "International Hospital Balikpapan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "AL. Minto Harja Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "LNG Tangguh Clinic", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Kalbe Farma Clinic", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Duri Public Hospital, Pekan Baru", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Pondok Kopi Moslem Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Sarjito Hospital", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Ngudi Waluyo Hospital, Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Health Laboratory, Bandung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Advend - Bandung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Marsudi Waluyo", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD Tugurejo", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD KOJA Tanjung Periok", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSAB Harapan Kita", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD AJI BATARA Kalimantan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Klinik Annisa Kalimantan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Kemayoran", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Bogor", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Makasar", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Bekasi", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Arcamanik", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Daan Mogot", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Klinik Mata Nusantara", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Charitas Papua", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Wangaya Bali", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Dinda Medistra", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Bbroun Factory", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Ui Depok", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Sukabumi", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Depok", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Balikpapan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Bhakti Asih Karawang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD CENGKARENG", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD SAWAH BESAR", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. KOJA", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "TZU CHI HOSPITAL", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD TAJUDIN CHALID MAKASAR", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD SOREANG", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Lampung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Grand Wisata", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Simprug", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Pertamina Jaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "JEC Pamularsih - Semarang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSPAD (Ruang Isolasi)", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Podomoro", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Bekasi", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Antam Medika", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Grand Wisata", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Daan Mogot", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Kaur Bengkulu", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Hermina Banyumanik", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Hermina Salatiga", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Hermina Tangkuban Perahu Malang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Covid Tanjung Duren", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Covid Merauke", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Columbia Asia - Medan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. RKZ Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Covid Padang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rsp Uin Alauddin Makassar", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSOT Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSUD Tapos - Depok", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Covid Cileungsi", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Islam Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Pelni", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Kendari", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Eka Hospital BSD", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Columbia Asia Pulomas", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Mitra Keluarga Karawang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Mitra Keluarga Jababeka", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Mitra Keluarga Pamulang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Mitra Keluarga Slawi", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Ubaya Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Columbia Asia Medan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Suyoto", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Resort Samosir", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Ciputra Hospital Citra Raya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Hermina Aceh", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Hermina Serpong", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Vertikal Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Hasan Sadikin Bandung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Sardjito - Yogyakarta", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Tigaraksa Tangerang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Tarakan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Ciputra Hospital Surabaya", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Biofarma Bandung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSMK Kemayoran", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Klinik Hasna Medika Garut", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Novus Giri Puncak", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Kariadi Semarang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RSAU Solo - Malang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS. Persahabatan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Rs. Dharmais", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Unpad - Bandung", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Hermina Pasuruan", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Betshaida Serang", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS Betshaida Serpong", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "International Hospital Sanur", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "RS UPT Vertikal Papua", tahun: "", aplikasi: "Kesehatan", segment: "Flooring", brand: "Armstrong", material: "Vinyl", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Golf Island Cluster Symfony & Melody", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "The Zora Cluster Kazumi dan Kimora", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Apartement Branz Megakuningan", tahun: "", aplikasi: "Perumahan", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Holland Village Tower 1 & 2", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Tokyo Riverside - PIK 2", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" },
+  { nama: "Antasari Place", tahun: "", aplikasi: "Apartemen dan Hotel", segment: "Flooring", brand: "Armstrong", material: "SPC", img: "asset/3-galeri/flooring/armstrong/" }
+];

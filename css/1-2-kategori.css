@@ -1,0 +1,90 @@
+/* ============================================================
+   BIRU INDONESIA — kategori.css
+   Halaman kategori produk (hero foto + deskripsi + grid brand).
+   Dipakai SEMUA halaman kategori (ceiling, flooring, hardware,
+   rollingdoor, security). Pakai token dari style.css.
+============================================================ */
+
+/* ---- Breadcrumb ---- */
+.kat-crumb {
+  background:var(--off-white);
+  border-bottom:1px solid var(--gray-100);
+  font-size:.85rem;
+}
+.kat-crumb .container { padding:14px 24px; }
+.kat-crumb a { color:var(--gray-700); }
+.kat-crumb a:hover { color:var(--blue-accent); }
+.kat-crumb span { color:var(--gray-700); margin:0 6px; }
+.kat-crumb__current { color:var(--navy); font-weight:600; }
+
+/* ---- Hero kategori (background foto) ---- */
+.kat-hero {
+  position:relative;
+  min-height:300px;
+  margin-top:var(--nav-height);
+  display:flex; align-items:center;
+  overflow:hidden;
+}
+.kat-hero__bg { position:absolute; inset:0; z-index:0; }
+.kat-hero__img { width:100%; height:100%; object-fit:cover; }
+.kat-hero__overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,
+    rgba(11,45,108,.88) 0%, rgba(11,45,108,.70) 50%, rgba(11,45,108,.35) 100%);
+}
+.kat-hero__content {
+  position:relative; z-index:1;
+  max-width:var(--container);
+  margin:0 auto; padding:40px 24px; width:100%;
+}
+.kat-hero__title {
+  color:var(--white);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:800; margin-bottom:12px;
+}
+.kat-hero__desc {
+  color:rgba(255,255,255,.9);
+  font-size:clamp(.95rem,1.4vw,1.1rem);
+  line-height:1.6; max-width:560px;
+}
+
+/* ---- Grid brand ---- */
+.kat-brands { padding:48px 0 var(--section-pad); }
+.kat-brands__count {
+  font-size:.9rem; color:var(--gray-700); font-weight:600;
+  margin-bottom:20px;
+}
+.kat-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.kat-card {
+  display:flex; flex-direction:column;
+  background:var(--white);
+  border:1px solid var(--gray-100); border-radius:var(--radius-md);
+  overflow:hidden; box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease;
+  color:inherit; text-decoration:none;
+}
+.kat-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
+.kat-card__img {
+  aspect-ratio:16/10; background:var(--gray-100); overflow:hidden;
+}
+.kat-card__img img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .5s ease;
+}
+.kat-card:hover .kat-card__img img { transform:scale(1.06); }
+.kat-card__body { padding:16px 18px; }
+.kat-card__name { font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.kat-card__desc { font-size:.85rem; color:var(--gray-700); }
+
+/* ---- Responsive ---- */
+@media (max-width:900px) {
+  .kat-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:540px) {
+  .kat-grid { grid-template-columns:1fr; }
+  .kat-hero { min-height:240px; }
+}
