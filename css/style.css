@@ -384,18 +384,19 @@ p  { line-height:1.7; color:var(--text-body); }
   width:320px; height:220px;
   border-radius:var(--radius-md); overflow:hidden;
   scroll-snap-align:start; box-shadow:var(--shadow-sm);
-  transition:transform .3s ease, box-shadow .3s ease;
-}
-.gallery__card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
-.gallery__card img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
-.gallery__card:hover img { transform:scale(1.06); }
+  transition:transform .3s ease, box-shadow .3s ease;}
 .gallery__label {
   position:absolute; bottom:0; left:0; right:0;
   padding:32px 16px 14px;
   background:linear-gradient(to top, rgba(13,30,76,.8) 0%, transparent 100%);
   color:var(--white); font-size:.85rem; font-weight:600;
-  transform:translateY(100%); transition:transform .3s ease;
+  transform:translateY(0); transition:transform .3s ease;
 }
+
+.gallery__card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.gallery__card img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.gallery__card:hover img { transform:scale(1.06); }
+
 .gallery__card:hover .gallery__label {
   transform: translateY(0);
 }
