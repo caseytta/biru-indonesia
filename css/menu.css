@@ -52,11 +52,14 @@
   background:var(--white);
   transition:border-color .2s, transform .2s, box-shadow .2s;
 }
+/*
 .mega__brand:hover {
   border-color:var(--blue-accent);
   transform:translateY(-2px);
   box-shadow:var(--shadow-sm);
 }
+  */
+  
 .mega__brand-name { font-size:.95rem; font-weight:700; color:var(--navy); }
 .mega__brand-desc { font-size:.8rem; color:var(--gray-500); }
 
