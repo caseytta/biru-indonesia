@@ -1,7 +1,7 @@
 .hero-slider {
   position:relative;
-  width:100%;
-  aspect-ratio: 1400 / 600;
+  width: 100%;
+  aspect-ratio: 1440 / 600; 
   max-height:600px;               
   overflow:hidden;
 }
