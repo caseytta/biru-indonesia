@@ -1,11 +1,3 @@
-/* ============================================================
-   BIRU INDONESIA — kategori.css
-   Halaman kategori produk (hero foto + deskripsi + grid brand).
-   Dipakai SEMUA halaman kategori (ceiling, flooring, hardware,
-   rollingdoor, security). Pakai token dari style.css.
-============================================================ */
-
-/* ---- Breadcrumb ---- */
 .kat-crumb {
   background:var(--off-white);
   border-bottom:1px solid var(--gray-100);
@@ -17,7 +9,6 @@
 .kat-crumb span { color:var(--gray-700); margin:0 6px; }
 .kat-crumb__current { color:var(--navy); font-weight:600; }
 
-/* ---- Hero kategori (background foto) ---- */
 .kat-hero {
   position:relative;
   min-height:300px;
@@ -48,7 +39,6 @@
   line-height:1.6; max-width:560px;
 }
 
-/* ---- Grid brand ---- */
 .kat-brands { padding:48px 0 var(--section-pad); }
 .kat-brands__count {
   font-size:.9rem; color:var(--gray-700); font-weight:600;
@@ -80,7 +70,6 @@
 .kat-card__name { font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
 .kat-card__desc { font-size:.85rem; color:var(--gray-700); }
 
-/* ---- Responsive ---- */
 @media (max-width:900px) {
   .kat-grid { grid-template-columns:repeat(2,1fr); }
 }

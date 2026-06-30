@@ -36,7 +36,6 @@
   color:#7ab0ff; font-size:.85rem;
 }
 
-/* FORM */
 .konsul__form {
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.1);
@@ -48,7 +47,6 @@
   width:100%; border:0; background:transparent;
 }
 
-/* ---- Responsive ---- */
 @media (max-width:880px) {
   .konsul__inner { grid-template-columns:1fr; gap:40px; padding:56px 22px; }
   .konsul::before { width:55%; }

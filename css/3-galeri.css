@@ -101,7 +101,6 @@ a.gal-card:hover .gal-card__img img { transform:scale(1.06); }
 .gal-page__btn.is-active { background:var(--blue-accent); border-color:var(--blue-accent); color:var(--white); }
 .gal-page__btn:disabled { opacity:.4; cursor:not-allowed; }
 
-/* ---- Responsive ---- */
 @media (max-width:1024px) {
   .gal-grid { grid-template-columns:repeat(2,1fr); }
 }
@@ -128,7 +127,6 @@ a.gal-card:hover .gal-card__img img { transform:scale(1.06); }
 }
 .gal-brand-sub:first-child { margin-top:0; }
 
-.gal-group--brand { }
 
 .gal-card__segs {
   position:absolute; top:12px; left:12px;

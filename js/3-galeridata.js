@@ -1,76 +1,7 @@
-/* ============================================================
-   BIRU INDONESIA — gallery-data.js
-   SUMBER DATA galeri proyek + definisi filter.
-
-   Cara update data proyek:
-   - Jangan ketik manual. Export tab proyek (Google Sheets) ke CSV,
-     lalu jalankan konverter (csv-to-gallery.html) untuk menghasilkan
-     ulang array PROJECTS di bawah. Tempel hasilnya menggantikan
-     array PROJECTS.
-
-   Kolom tiap proyek:
-     nama      : NamaProjek
-     tahun     : Tahun
-     aplikasi  : SolusiAplikasi   (mis. "Residential")
-     segment   : ProductSegment   (mis. "Flooring")
-     brand     : ProductSegment_Brand (mis. "Pergo")
-     material  : JenisMaterial    (opsional)
-     img       : nama file di asset/3-galeri/  (mis. "arumaya.jpg")
-============================================================ */
-/*Archieved===========================================
-   ---- Daftar nilai filter (urutan tampil di sidebar) ---- 
-  const FILTERS = {
-    aplikasi: ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartement dan Hotel", "Fasilitas Umum"],
-    segment:  ["Ceiling", "Hardware", "Flooring", "Rolling Door", "Security Systems"],
-    brand: [
-      "Daiken", "Phonic", "USG", "BRS_Tee", "BRS_Manhole", "Luxalon", "Jayaboard",
-      "Yale", "Assabloy", "BRS_Lock", "Lexcia", "Allsave",
-      "Armstrong", "Pergo", "Aereo", "Kaiden", "BRS_Handrail", "BRS_Skirting",
-      "BRS_Fire Curtain", "BRS_Shutters Rolling Door", "Magnetic", "FAAC"
-    ]
-  };
-
-   ---- Map segment -> nama folder di 1-produk/ ---- 
-  const SEGMENT_FOLDER = {
-    "Ceiling": "ceiling",
-    "Hardware": "hardware",
-    "Flooring": "flooring",
-    "Rolling Door": "rollingdoor",
-    "Security Systems": "security"
-  };
-
-   ---- Brand yang SUDAH punya halaman sendiri ----
-    Hanya brand di sini yang kartunya nge-link ke halaman brand.
-    Brand lain (belum ada halaman) di-link ke "#" (tidak pindah). ---------
-  const BRAND_PAGE = {
-    "Luxalon": "luxalon", "Daiken": "daiken", "USG": "usg",
-    "Yale": "yale", "Assabloy": "assabloy", "BRS_Lock": "brslock",
-    "Pergo": "pergo", "Armstrong": "armstrong", "Aereo": "aereo",
-    "BRS_Shutters Rolling Door": "brsfireshutter", "FAAC": "faac"
-  };
-
-   Hasilkan URL halaman brand dari sebuah proyek.
-    Halaman galeri ada di ROOT, jadi prefix-nya "1-produk/...". 
-  function brandUrl(project) {
-    const folder = SEGMENT_FOLDER[project.segment];
-    const slug = BRAND_PAGE[project.brand];
-    if (folder && slug) return `1-produk/${folder}/${slug}.html`;
-    return "#"; // brand belum punya halaman
-  }
-============================================/
-
-/* ---- DATA PROYEK ----
-   Contoh awal dari Tabel 2 (ganti seluruh array ini dengan hasil
-   konverter CSV saat data 100+ proyek sudah siap). */
- 
-/* ---- Aplikasi (urut tampil di sidebar) ---- */
 const APLIKASI = ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartemen dan Hotel", "Fasilitas Umum"];
  
-/* ---- Segment (urut tampil) ---- */
 const SEGMENTS = ["Ceiling", "Hardware", "Flooring", "Rolling Door", "Security System"];
- 
-/* ---- Brand per segment (dari master spreadsheet) ----
-   Inilah sumber cascading: centang segment -> tampil brand di sini. */
+
 const BRAND_BY_SEGMENT = {
   "Ceiling":         ["Daiken", "Phonic", "USG", "BRS Tee", "BRS_Manhole", "Luxalon", "Jayaboard"],
   "Hardware":        ["Yale", "Assabloy", "BRS Locks", "Lexcia", "Allsafe"],
@@ -79,21 +10,17 @@ const BRAND_BY_SEGMENT = {
   "Security System": ["BRS Shutters Rolling Door", "Magnetic", "FAAC"]
 };
  
-/* FILTERS dipakai sidebar. brand diisi otomatis dari BRAND_BY_SEGMENT. */
 const FILTERS = {
   aplikasi: APLIKASI,
   segment:  SEGMENTS,
-  // daftar datar semua brand (kalau sewaktu-waktu perlu) — diturunkan dari map
   brand: Object.values(BRAND_BY_SEGMENT).flat()
 };
  
-/* ---- segment -> folder di 1-produk/ ---- */
 const SEGMENT_FOLDER = {
   "Ceiling": "ceiling", "Hardware": "doorhardware", "Flooring": "flooring",
   "Rolling Door": "rollingdoor", "Security System": "securitysystem"
 };
- 
-/* ---- brand -> slug halaman (hanya yang sudah punya halaman) ---- */
+
 const BRAND_PAGE = {
   "Luxalon": "luxalon", "Daiken": "daiken", "USG": "usg",
   "Yale": "yale", "Assabloy": "assabloy", "BRS Locks": "brslock",
@@ -101,7 +28,6 @@ const BRAND_PAGE = {
   "BRS Shutters Rolling Door": "brsfireshutter", "FAAC": "faac"
 };
  
-/* URL halaman brand (single brand). null kalau belum ada. */
 function brandUrlFor(segment, brand) {
   const folder = SEGMENT_FOLDER[segment];
   const slug = BRAND_PAGE[brand];
