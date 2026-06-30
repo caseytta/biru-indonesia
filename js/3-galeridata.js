@@ -1,4 +1,4 @@
-const APLIKASI = ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartemen dan Hotel", "Fasilitas Umum"];
+const APLIKASI = ["Kesehatan", "Pendidikan", "Perkantoran", "Perumahan", "Apartemen dan Hotel", "Fasilitas Umum", "Komersial"];
  
 const SEGMENTS = ["Ceiling", "Hardware", "Flooring", "Rolling Door", "Security System"];
 

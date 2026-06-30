@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main pages -->
+  <url><loc>https://biruindonesia.com/</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://biruindonesia.com/2-tentangkami.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/3-galeri.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://biruindonesia.com/4-inspirasi.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://biruindonesia.com/5-karir.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://biruindonesia.com/6-kontak.html</loc><priority>0.9</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Produk: Ceiling -->
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/0-index.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/brsmanhole.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/brstee.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/daiken.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/jayaboard.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/luxalon.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/phonic.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/ceiling/usg.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Produk: Door Hardware -->
+  <url><loc>https://biruindonesia.com/1-produk/doorhardware/0-index.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/doorhardware/assabloy.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/doorhardware/brslock.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/doorhardware/lexcia.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/doorhardware/yale.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Produk: Flooring -->
+  <url><loc>https://biruindonesia.com/1-produk/flooring/0-index.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/aereo.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/armstrong.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/brshandrail.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/brsskirting.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/kaiden.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/flooring/pergo.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Produk: Rolling Door -->
+  <url><loc>https://biruindonesia.com/1-produk/rollingdoor/0-index.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/rollingdoor/brsfireshutter.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/rollingdoor/brsheavyshutter.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/rollingdoor/brslightshutter.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Produk: Security System -->
+  <url><loc>https://biruindonesia.com/1-produk/securitysystem/0-index.html</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/securitysystem/brsfloodgate.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/securitysystem/faac.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://biruindonesia.com/1-produk/securitysystem/magnetic.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+</urlset>

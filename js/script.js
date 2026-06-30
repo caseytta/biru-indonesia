@@ -177,46 +177,43 @@ function initGallery() {
   });
 }
 
-function handleSubmitSuccess(btn, form) {
-  btn.textContent = 'Mengirim...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-    form.innerHTML = `
-      <div class="form-success">
-        <div class="form-success__icon">✓</div>
-        <h3>Terima kasih!</h3>
-        <p>Data kamu sudah kami terima. E-Katalog akan dikirim ke email kamu dalam 1×24 jam.</p>
-        <p style="margin-top:8px; font-size:.85rem; color:#94a3b8;">
-          Butuh respons lebih cepat? 
-          <a href="https://wa.me/6281510263893" style="color:#60a5fa;">Chat via WhatsApp ↗</a>
-        </p>
-      </div>
-    `;
+function loadPartials() {
+  const depth = location.pathname.split('/').filter(Boolean).length;
+  const base = depth > 1 ? '../'.repeat(depth - 1) : './';
 
-    const style = document.createElement('style');
-    style.textContent = `
-      .form-success {
-        text-align: center;
-        padding: 32px 16px;
-        animation: fadeInUp .5s ease-out;
-      }
-      .form-success__icon {
-        width: 56px; height: 56px; border-radius: 50%;
-        background: rgba(34,197,94,.15);
-        border: 2px solid rgba(34,197,94,.4);
-        color: #4ade80; font-size: 1.6rem;
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 20px;
-      }
-      .form-success h3 { color: #fff; margin-bottom: 10px; font-size: 1.3rem; }
-      .form-success p  { color: #94a3b8; font-size: .9rem; line-height: 1.6; }
-    `;
-    document.head.appendChild(style);
-  } 1200;
+  const navPlaceholder = document.getElementById('navbar-placeholder');
+  const footerPlaceholder = document.getElementById('footer-placeholder');
+
+  const loads = [];
+
+  if (navPlaceholder) {
+    loads.push(
+      fetch(base + 'navbar.html')
+        .then(r => r.text())
+        .then(html => {
+          navPlaceholder.outerHTML = html;
+          initNavbar();
+          initHamburger();
+          initMegaMenu();
+          initMobileAccordion();
+        })
+    );
+  }
+
+  if (footerPlaceholder) {
+    loads.push(
+      fetch(base + 'footer.html')
+        .then(r => r.text())
+        .then(html => { footerPlaceholder.outerHTML = html; })
+    );
+  }
+
+  return Promise.all(loads);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNavbar();
-  initHamburger();
-  initScrollReveal();
-  initGallery();
+  loadPartials().then(() => {
+    initScrollReveal();
+    initGallery();
+  });
 });

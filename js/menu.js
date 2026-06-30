@@ -54,7 +54,3 @@ function initMobileAccordion() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMegaMenu();
-  initMobileAccordion();
-});
